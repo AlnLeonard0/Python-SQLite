@@ -40,8 +40,11 @@ class Aluno(Base):
     sobrenome = Column("Sobrenome", String)
     professor_id = Column(Integer, ForeignKey('professores.ID'))  # Chave estrangeira para 'professores'
 
-    # Notas associadas ao aluno
-    notas = relationship("Nota", back_populates="aluno")
+    # Relacionamento com Professor
+    professor = relationship("Professor", back_populates="alunos")
+
+    # Relacionamento com Notas
+    notas = relationship("Nota", back_populates="aluno", cascade="all, delete, delete-orphan")
 
     def __init__(self, nome: str, sobrenome: str, professor_id: int):
         self.nome = nome
@@ -59,6 +62,7 @@ class Nota(Base):
     nota4 = Column("Nota IV", Float)
     matricula_aluno = Column(Integer, ForeignKey('alunos.Matricula'))  # Chave estrangeira para 'alunos'
 
+    # Relacionamento com Aluno
     aluno = relationship("Aluno", back_populates="notas")
 
     def __init__(self, nota1: float, nota2: float, nota3: float, nota4: float, matricula_aluno: int):
@@ -88,7 +92,7 @@ def menu_aluno():
     print("="*30)
     print("""
 1 - ADCIONAR ALUNO
-2 - EDITAR NOTAS
+2 - EDITAR NOTAS E CALCULAR MEDIA
 3 - EXCLUIR ALUNO
 """)
     print("="*30)
@@ -154,3 +158,7 @@ DESEJA ADICIONAR OUTRO PROFESSOR ?
                             session.add(aluno)
                             session.commit()
                             print("Aluno salvo com sucesso")
+
+                        case 2:
+
+
