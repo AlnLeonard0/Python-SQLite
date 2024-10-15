@@ -106,6 +106,12 @@ def criando_senha():
         print("As precisam ser iguais")
     return senha
 
+def media (notas):
+    qtd = len(notas)
+    total = sum(notas)
+    med = total/qtd
+    return med
+
 while True:
     limpa_tela()
     while True:
@@ -160,5 +166,16 @@ DESEJA ADICIONAR OUTRO PROFESSOR ?
                             print("Aluno salvo com sucesso")
 
                         case 2:
-
-
+                            lista_notas = []
+                            matricula_alun =input("MATRICULA DO ALUNO: ")
+                            alun = session.query(Aluno).filter(Aluno.matricula == matricula_alun).first()
+                            notas=Nota(
+                                nota1 = float(input("Nota I: ")),
+                                nota2 = float(input("Nota II: ")),
+                                nota3 = float(input("Nota III: ")),
+                                nota4 = float(input("Nota IV: ")),
+                                matricula_aluno = matricula_alun
+                            )
+                            lista_notas.append(notas)
+                            media_notas = media(lista_notas)
+                            print(f"A MEDIA É: {media_notas}")

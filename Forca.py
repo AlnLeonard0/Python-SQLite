@@ -9,6 +9,7 @@ palavra = choice(palavras)
 qtd_letra = len(palavra)
 chute = []
 
+system("cls||clear")
 print(f"A PALAVRA TEM {qtd_letra} LETRAS\n")
 for i in range (0,qtd_letra):
     letra = input("INFORME A LETRA: ").upper()
