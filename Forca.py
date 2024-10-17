@@ -25,4 +25,3 @@ if palavra_final == palavra:
     print(f"VOCÊ ACERTOU")
 else:
     print(f"VOCÊ ERROU, A PALAVRA É CERTA É {palavra}")
-    

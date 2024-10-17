@@ -32,7 +32,6 @@ class Professor(Base):
     # Relacionamento com Alunos
     alunos = relationship("Aluno", back_populates="professor")
 
-
 class Aluno(Base):
     __tablename__ = "alunos"
 
@@ -53,7 +52,6 @@ class Aluno(Base):
         self.sobrenome = sobrenome
         self.professor_id = professor_id  # Atribuindo professor_id
 
-
 class Nota(Base):
     __tablename__ = "notas"
 
@@ -64,7 +62,6 @@ class Nota(Base):
 
     # Relacionamento com Aluno
     aluno = relationship("Aluno", back_populates="notas")
-
 
 # Código para criar as tabelas no banco de dados
 if __name__ == "__main__":
