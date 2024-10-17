@@ -14,6 +14,7 @@ session = Session()
 
 Base = declarative_base()
 
+
 class Professor(Base):
     __tablename__ = "professores"
 
@@ -30,6 +31,7 @@ class Professor(Base):
 
     # Relacionamento com Alunos
     alunos = relationship("Aluno", back_populates="professor")
+
 
 class Aluno(Base):
     __tablename__ = "alunos"
@@ -51,26 +53,18 @@ class Aluno(Base):
         self.sobrenome = sobrenome
         self.professor_id = professor_id  # Atribuindo professor_id
 
+
 class Nota(Base):
     __tablename__ = "notas"
 
     # Definindo variáveis da tabela
     id = Column(Integer, primary_key=True, autoincrement=True)  # ID para identificar cada nota
-    nota1 = Column("Nota I", Float)
-    nota2 = Column("Nota II", Float)
-    nota3 = Column("Nota III", Float)
-    nota4 = Column("Nota IV", Float)
+    nota1 = Column("Nota I", Float)  # Definindo a coluna corretamente
     matricula_aluno = Column(Integer, ForeignKey('alunos.Matricula'))  # Chave estrangeira para 'alunos'
 
     # Relacionamento com Aluno
     aluno = relationship("Aluno", back_populates="notas")
 
-    def __init__(self, nota1: float, nota2: float, nota3: float, nota4: float, matricula_aluno: int):
-        self.nota1 = nota1
-        self.nota2 = nota2
-        self.nota3 = nota3
-        self.nota4 = nota4
-        self.matricula_aluno = matricula_aluno  # Atribuindo a matrícula do aluno
 
 # Código para criar as tabelas no banco de dados
 if __name__ == "__main__":
